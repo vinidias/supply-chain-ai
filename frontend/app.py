@@ -23,7 +23,7 @@ def load_kpis() -> dict:
           (SELECT ROUND(AVG(rating), 2) FROM suppliers) AS avg_supplier_rating
     """).fetchone()
     con.close()
-    return dict(zip(["n_suppliers", "n_products", "n_orders", "gmv", "avg_supplier_rating"], row))
+    return dict(zip(["n_suppliers", "n_products", "n_orders", "gmv", "avg_supplier_rating"], row, strict=False))
 
 
 @st.cache_data
