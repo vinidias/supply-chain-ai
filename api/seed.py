@@ -42,7 +42,9 @@ def generate() -> None:
         "category": np.random.choice(CATEGORIES, n_suppliers),
         "rating": np.round(np.random.uniform(2.5, 5.0, n_suppliers), 1),
     })
-    con.execute("CREATE TABLE suppliers AS SELECT * FROM suppliers_df", {"suppliers_df": suppliers})
+    con.register("suppliers_df", suppliers)
+    con.execute("CREATE TABLE suppliers AS SELECT * FROM suppliers_df")
+    con.unregister("suppliers_df")
 
     # Products
     n_products = 200
@@ -54,7 +56,9 @@ def generate() -> None:
         "unit_cost": np.round(np.random.uniform(5, 500, n_products), 2),
         "lead_time_days": np.random.randint(3, 45, n_products),
     })
-    con.execute("CREATE TABLE products AS SELECT * FROM products_df", {"products_df": products})
+    con.register("products_df", products)
+    con.execute("CREATE TABLE products AS SELECT * FROM products_df")
+    con.unregister("products_df")
 
     # Orders (last 180 days)
     n_orders = 5000
@@ -73,7 +77,9 @@ def generate() -> None:
         "unit_price": np.round(unit_prices, 2),
         "status": np.random.choice(STATUSES, n_orders, p=[0.80, 0.12, 0.06, 0.02]),
     })
-    con.execute("CREATE TABLE orders AS SELECT * FROM orders_df", {"orders_df": orders})
+    con.register("orders_df", orders)
+    con.execute("CREATE TABLE orders AS SELECT * FROM orders_df")
+    con.unregister("orders_df")
 
     # Inventory snapshots (last 30 days, 3 per day)
     inv_rows = []
@@ -87,7 +93,9 @@ def generate() -> None:
                 "reorder_point": int(np.random.uniform(50, 500)),
             })
     inventory = pd.DataFrame(inv_rows)
-    con.execute("CREATE TABLE inventory AS SELECT * FROM inventory_df", {"inventory_df": inventory})
+    con.register("inventory_df", inventory)
+    con.execute("CREATE TABLE inventory AS SELECT * FROM inventory_df")
+    con.unregister("inventory_df")
 
     con.close()
     print(f"[OK] {DB_PATH}")
