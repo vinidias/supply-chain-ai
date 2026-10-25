@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: stg_orders
+    columns:
+      - name: order_id
+        tests:
+          - unique
+          - not_null
+      - name: line_total
+        tests:
+          - not_null
+
+  - name: mart_supplier_performance
+    columns:
+      - name: supplier_id
+        tests:
+          - unique
+          - not_null
+      - name: gmv
+        tests:
+          - not_null

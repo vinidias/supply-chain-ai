@@ -1,0 +1,8 @@
+supply_chain:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: "D:/Dev/supply-chain-ai/data/supply_chain.duckdb"
+      schema: main
+      threads: 4
