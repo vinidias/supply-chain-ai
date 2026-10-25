@@ -115,14 +115,40 @@ curl -X POST http://localhost:8000/ask \\
   -d '{"question": "Which supplier has the highest number of delayed orders?"}'
 ```
 
-Response:
-```json
-{
-  "answer": "Supplier_017 from Vietnam has 12 delayed orders (28% delay rate), followed by Supplier_042 from China with 9 delayed orders (21% rate).",
-  "sources": ["SQL: SELECT supplier_name, n_delayed, delay_pct FROM mart_supplier_performance ORDER BY n_delayed DESC LIMIT 5"],
-  "model": "llama-3.3-70b-versatile"
-}
+**Real outputs (validated end-to-end, 2026-10-25):**
+
+**Q1: "Qual o supplier com maior GMV?"**
 ```
+SQL gerado:
+SELECT s.id, s.name, SUM(o.quantity * o.unit_price) AS gmv
+FROM orders o
+JOIN products p ON o.product_id = p.id
+JOIN suppliers s ON p.supplier_id = s.id
+WHERE o.status = 'delivered'
+GROUP BY s.id, s.name
+ORDER BY gmv DESC
+LIMIT 1
+
+Resposta: O fornecedor com maior GMV é Supplier_012 (ID 12) com GMV R$ 20.883.441,46
+```
+
+**Q2: "Quantos pedidos foram atrasados?"**
+```
+SQL: SELECT COUNT(*) AS delayed_orders FROM orders WHERE status = 'delayed'
+Resposta: Foram 312 pedidos atrasados.
+```
+
+**Q3: "Qual o ticket medio dos pedidos?"**
+```
+SQL: SELECT AVG(quantity * unit_price) AS average_ticket FROM orders
+Resposta: O ticket médio dos pedidos é R$ 82.352,05.
+```
+
+**Supported models** (via `GROQ_MODEL` env var):
+- `openai/gpt-oss-120b` (default, recommended)
+- `openai/gpt-oss-20b` (faster, smaller)
+- `qwen/qwen3.8-27b`
+- `allam-2-7b`
 
 ---
 
