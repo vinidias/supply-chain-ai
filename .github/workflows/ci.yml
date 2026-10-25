@@ -21,12 +21,20 @@ jobs:
           pip install -r requirements.txt
           pip install pytest httpx
       - name: Seed database
-        run: python -m api.seed
+        run: |
+          python -m api.seed
+          ls -la data/
       - name: dbt run
         working-directory: dbt_project
-        run: dbt run --profiles-dir .
+        env:
+          DUCKDB_PATH: ../data/supply_chain.duckdb
+        run: |
+          echo "DUCKDB_PATH=$DUCKDB_PATH"
+          dbt run --profiles-dir . --target dev
       - name: dbt test
         working-directory: dbt_project
+        env:
+          DUCKDB_PATH: ../data/supply_chain.duckdb
         run: dbt test --profiles-dir .
       - name: pytest
         run: pytest tests/ -v
@@ -35,11 +43,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Install ruff
-        run: pip install ruff
-      - name: Lint
-        run: ruff check api/ agents/ rag/ frontend/ --ignore E501,E402,F401 || true
+      - run: pip install ruff
+      - run: ruff check api/ agents/ rag/ frontend/ --ignore E501,E402,F401,BLE001 || true
