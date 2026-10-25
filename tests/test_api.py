@@ -64,8 +64,15 @@ def test_orders_recent():
     assert isinstance(r.json(), list)
 
 
-def test_ask_without_key():
-    """RAG deve retornar 503 se GROQ_API_KEY nao configurada."""
-    r = client.post("/ask", json={"question": "teste"})
-    # Pode ser 503 (sem key) ou 500 (com key mas erro)
-    assert r.status_code in (503, 500)
+def test_ask():
+    """RAG funciona com key configurada ou retorna 503 sem key."""
+    r = client.post("/ask", json={"question": "Quantos pedidos existem?"})
+    # 200 = key configurada, funciona
+    # 503 = sem key, retorna instrucao
+    # 500 = key invalida ou erro do LLM
+    assert r.status_code in (200, 500, 503)
+    if r.status_code == 200:
+        data = r.json()
+        assert "answer" in data
+        assert len(data["answer"]) > 0
+        assert "sources" in data
