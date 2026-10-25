@@ -109,6 +109,18 @@ def low_stock(limit: Annotated[int, Query(ge=1, le=200)] = 50):
     return db.query(sql, {"limit": limit})
 
 
+@app.get("/suppliers/performance")
+def supplier_performance(limit: Annotated[int, Query(ge=1, le=100)] = 20):
+    """Performance agregada por supplier (usa dbt mart)."""
+    try:
+        return db.query(
+            "SELECT * FROM marts.mart_supplier_performance ORDER BY gmv DESC LIMIT :limit",
+            {"limit": limit},
+        )
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"dbt mart indisponivel: {e}. Rode dbt run primeiro.")
+
+
 @app.get("/metrics/summary")
 def metrics_summary():
     rows = db.query("""

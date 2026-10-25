@@ -1,11 +1,29 @@
-.venv/
+# Python
 __pycache__/
 *.pyc
+*.pyo
+.venv/
+venv/
+*.egg-info/
+
+# Env
 .env
+
+# Data (generated)
 data/*.duckdb
 data/*.duckdb.wal
+data/*.parquet
+
+# dbt
 dbt_project/target/
 dbt_project/logs/
 dbt_project/dbt_packages/
+dbt_project/.user.yml
+
+# Logs
 *.log
-.cache/
+
+# IDE
+.vscode/
+.idea/
+.DS_Store
