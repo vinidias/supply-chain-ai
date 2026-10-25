@@ -138,16 +138,15 @@ def metrics_summary():
 @app.post("/ask", response_model=AskResponse)
 def ask(req: AskRequest):
     """RAG sobre os dados: pergunta em NL, resposta fundamentada em SQL."""
-    api_key = os.getenv("GROQ_API_KEY")
-    if not api_key:
+    if not (os.getenv("GROQ_API_KEY") or os.getenv("ARK_API_KEY") or os.getenv("OPENAI_API_KEY")):
         raise HTTPException(
             status_code=503,
-            detail="GROQ_API_KEY nao configurada. Crie conta gratis em https://console.groq.com/keys e coloque no .env",
+            detail="Nenhum LLM configurado. Sete GROQ_API_KEY, ARK_API_KEY ou OPENAI_API_KEY no .env",
         )
 
     try:
         from rag.llm import answer_question
-        answer, sources, model = answer_question(req.question, api_key)
+        answer, sources, model = answer_question(req.question)
         return AskResponse(answer=answer, sources=sources, model=model)
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Erro no LLM: {e}")
