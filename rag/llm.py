@@ -48,7 +48,7 @@ def _build_llm(temperature: float = 0.0) -> tuple[BaseChatModel, str]:
         from langchain_groq import ChatGroq
         return ChatGroq(
             api_key=os.environ["GROQ_API_KEY"],
-            model=os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile"),
+            model=os.getenv("GROQ_MODEL", "openai/gpt-oss-120b"),
             temperature=temperature,
         ), "groq"
 
