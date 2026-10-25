@@ -8,6 +8,7 @@ Schema:
     inventory  : product_id, snapshot_date, stock_level, reorder_point
 """
 from __future__ import annotations
+
 import random
 from datetime import datetime, timedelta
 from pathlib import Path

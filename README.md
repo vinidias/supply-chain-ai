@@ -2,10 +2,12 @@
 
 > **Full-stack AI data platform for supply chain analytics** — FastAPI · PostgreSQL/DuckDB · dbt · LangChain · Groq (Llama 3.3) · Streamlit · Docker-ready.
 
+[![CI](https://github.com/vinidias/supply-chain-ai/actions/workflows/ci.yml/badge.svg)](https://github.com/vinidias/supply-chain-ai/actions/workflows/ci.yml)
 [![Python 3.12](https://img.shields.io/badge/python-3.12-blue.svg)](https://www.python.org/downloads/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.115-009688.svg)](https://fastapi.tiangolo.com/)
 [![dbt](https://img.shields.io/badge/dbt-1.8-FF694B.svg)](https://www.getdbt.com/)
 [![Docker](https://img.shields.io/badge/Docker-ready-2496ED.svg)](https://www.docker.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ---
 

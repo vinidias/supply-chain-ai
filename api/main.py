@@ -11,6 +11,7 @@ Endpoints:
     POST /ask                 — RAG: pergunta em NL sobre os dados
 """
 from __future__ import annotations
+
 import os
 from typing import Annotated
 
@@ -78,7 +79,7 @@ def recent_orders(
     days: Annotated[int, Query(ge=1, le=180)] = 7,
     limit: Annotated[int, Query(ge=1, le=500)] = 50,
 ):
-    sql = """
+    sql = f"""
         SELECT o.id, o.product_id, o.order_date, o.quantity,
                o.unit_price, o.status, p.name AS product_name
         FROM orders o
@@ -86,7 +87,7 @@ def recent_orders(
         WHERE o.order_date >= (SELECT MAX(order_date) FROM orders) - INTERVAL '{days}' DAY
         ORDER BY o.order_date DESC
         LIMIT :limit
-    """.format(days=days)
+    """
     return db.query(sql, {"limit": limit})
 
 

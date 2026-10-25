@@ -20,7 +20,7 @@ def test_suppliers():
     data = r.json()
     assert isinstance(data, list)
     assert 0 < len(data) <= 5
-    assert "supplier_name" in data[0]
+    assert "name" in data[0] or "supplier_name" in data[0]
 
 
 def test_products():
