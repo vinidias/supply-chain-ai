@@ -3,6 +3,6 @@ supply_chain:
   outputs:
     dev:
       type: duckdb
-      path: "D:/Dev/supply-chain-ai/data/supply_chain.duckdb"
+      path: "{{ env_var('DUCKDB_PATH', '../data/supply_chain.duckdb') }}"
       schema: main
       threads: 4
