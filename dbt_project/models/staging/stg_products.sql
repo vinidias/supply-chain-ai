@@ -1,7 +1,5 @@
 {{ config(materialized="view", schema="staging") }}
 
--- Staging de products: junta products + suppliers (desnormalização inicial)
--- Convenção: 'stg_' prefix = staging layer, dados "limpos" mas ainda não agregados
 SELECT
     p.id AS product_id,
     p.name AS product_name,
