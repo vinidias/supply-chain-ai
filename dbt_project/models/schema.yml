@@ -1,6 +1,26 @@
 version: 2
 
 models:
+  - name: stg_products
+    description: "Staging de products enriquecido com dados do supplier"
+    columns:
+      - name: product_id
+        description: "PK do produto"
+        tests:
+          - unique
+          - not_null
+      - name: unit_cost
+        description: "Custo unitário (deve ser > 0)"
+        tests:
+          - not_null
+      - name: supplier_id
+        description: "FK para suppliers"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_suppliers')
+              field: supplier_id
+
   - name: stg_orders
     columns:
       - name: order_id
