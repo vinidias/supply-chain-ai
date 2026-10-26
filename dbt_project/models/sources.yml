@@ -1,0 +1,44 @@
+version: 2
+
+sources:
+  - name: raw
+    description: "Tabelas brutas do sistema de supply chain (DuckDB)"
+    schema: main
+    tables:
+      - name: orders
+        description: "Pedidos de compra"
+        loaded_at_field: order_date
+        freshness:
+          warn_after: {count: 1, period: day}
+          error_after: {count: 7, period: day}
+        columns:
+          - name: id
+            description: "PK do pedido"
+            tests:
+              - unique
+              - not_null
+          - name: status
+            description: "delivered, delayed, cancelled, in_transit"
+            tests:
+              - accepted_values:
+                  arguments:
+                    values: ['delivered', 'delayed', 'cancelled', 'in_transit']
+
+      - name: products
+        description: "Catálogo de produtos"
+        freshness:
+          warn_after: {count: 7, period: day}
+          error_after: {count: 30, period: day}
+
+      - name: suppliers
+        description: "Fornecedores"
+        freshness:
+          warn_after: {count: 30, period: day}
+          error_after: {count: 90, period: day}
+
+      - name: inventory
+        description: "Snapshots de estoque (3 por dia)"
+        loaded_at_field: snapshot_date
+        freshness:
+          warn_after: {count: 1, period: day}
+          error_after: {count: 3, period: day}

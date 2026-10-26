@@ -6,4 +6,4 @@ SELECT
     country,
     category,
     rating
-FROM suppliers
+FROM {{ source('raw', 'suppliers') }}

@@ -10,5 +10,5 @@ SELECT
     o.unit_price,
     ROUND(o.quantity * o.unit_price, 2) AS line_total,
     o.status
-FROM orders o
-LEFT JOIN products p ON p.id = o.product_id
+FROM {{ source('raw', 'orders') }} o
+LEFT JOIN {{ source('raw', 'products') }} p ON p.id = o.product_id

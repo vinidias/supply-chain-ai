@@ -10,5 +10,5 @@ SELECT
     s.name AS supplier_name,
     s.country AS supplier_country,
     s.rating AS supplier_rating
-FROM products p
-LEFT JOIN suppliers s ON s.id = p.supplier_id
+FROM {{ source('raw', 'products') }} p
+LEFT JOIN {{ source('raw', 'suppliers') }} s ON s.id = p.supplier_id
