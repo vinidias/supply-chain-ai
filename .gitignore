@@ -1,39 +1,33 @@
-<path>D:/Dev/supply-chain-ai/.gitignore</path>
-<type>file</type>
-<content>
-1: # Python
-2: __pycache__/
-3: *.pyc
-4: *.pyo
-5: .venv/
-6: venv/
-7: *.egg-info/
-8: 
-9: # Env
-10: .env
-11: 
-12: # Data (generated)
-13: data/*.duckdb
-14: data/*.duckdb.wal
-15: data/*.parquet
-16: 
-17: # dbt
-18: dbt_project/target/
-19: dbt_project/logs/
-20: dbt_project/dbt_packages/
-21: dbt_project/.user.yml
-22: 
-23: # Logs
-24: *.log
-25: 
-26: # IDE
-27: .vscode/
-28: .idea/
-29: .DS_Store
-30: 
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
 
-(End of file - total 30 lines)
-</content>
+# Env
+.env
 
-# Anofox PNGs (conversão falha no Windows — usamos SVG)
+# Data (generated)
+data/*.duckdb
+data/*.duckdb.wal
+data/*.parquet
+
+# dbt
+dbt_project/target/
+dbt_project/logs/
+dbt_project/dbt_packages/
+dbt_project/.user.yml
+
+# Logs
+*.log
+
+# Anofox PNGs (SVG is enough on GitHub — cairo missing on Windows)
 docs/images/anofox_png/
+
+# IDE
+.vscode/
+.idea/
+.DS_Store
