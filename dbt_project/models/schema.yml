@@ -18,8 +18,9 @@ models:
         tests:
           - not_null
           - relationships:
-              to: ref('stg_suppliers')
-              field: supplier_id
+              arguments:
+                to: ref('stg_suppliers')
+                field: supplier_id
 
   - name: stg_orders
     columns:
@@ -38,5 +39,21 @@ models:
           - unique
           - not_null
       - name: gmv
+        tests:
+          - not_null
+
+  - name: mart_category_performance
+    description: "KPIs agregados por categoria de produto"
+    columns:
+      - name: category
+        description: "Categoria do produto (PK)"
+        tests:
+          - unique
+          - not_null
+      - name: gmv
+        tests:
+          - not_null
+      - name: delay_rate_pct
+        description: "Taxa de atraso (0-100%)"
         tests:
           - not_null
