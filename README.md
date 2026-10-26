@@ -9,6 +9,8 @@
 [![Docker](https://img.shields.io/badge/Docker-ready-2496ED.svg)](https://www.docker.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+![Supply Chain AI Dashboard](docs/images/dashboard_full.png)
+
 ---
 
 ## 🎯 What this demonstrates
@@ -267,6 +269,24 @@ dbt docs generate && dbt docs serve   # lineage graph
 
 ---
 
+## 🏆 Project status
+
+| Dimension | Status |
+|---|---|
+| **CI** | [![CI](https://github.com/vinidias/supply-chain-ai/actions/workflows/ci.yml/badge.svg)](https://github.com/vinidias/supply-chain-ai/actions/workflows/ci.yml) |
+| **Tests** | 8/8 pytest · 6/6 dbt tests |
+| **RAG** | 2 providers validated (Groq + BytePlus Ark) — identical answers |
+| **Lint** | ruff clean |
+| **Deploy** | Docker + compose ready |
+| **Charts** | 12 panels (6 KPIs + 6 charts) from SQL via anofox-visualization |
+| **Lines of code** | ~2.500 (backend + dbt + frontend) |
+
 ## 📄 License
 
 MIT — free for study and portfolio use.
+
+---
+
+**Author**: Vinicius Dias · [GitHub](https://github.com/vinidias) · 2026
+
+**Built with** ❤️ using FastAPI, dbt, DuckDB, LangChain, anofox-visualization, Streamlit
