@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="120" viewBox="0 0 240 120">
+  <rect x="0" y="0" width="240" height="120" fill="white" stroke="#e5e7eb" stroke-width="1" rx="8"/>
+  <text x="20" y="28" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#6b7280" font-weight="500" letter-spacing="0.5">TICKET MEDIO</text>
+  <text x="20" y="70" font-family="system-ui,-apple-system,sans-serif" font-size="32" fill="#2A9D8F" font-weight="700">R$ 82.4K</text>
+  <text x="20" y="100" font-family="system-ui,sans-serif" font-size="12" fill="#9ca3af">Valor medio por pedido</text>
+</svg>

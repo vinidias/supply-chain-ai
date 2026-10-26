@@ -30,6 +30,39 @@ This project was built to showcase the stack required for a **Senior Data Develo
 
 ---
 
+## 📊 Dashboard (anofox-visualization)
+
+Built with [**anofox-visualization**](https://github.com/DataZooDE/anofox-visualization) — the grammar of graphics rendered straight from SQL to SVG, no JS charting library.
+
+### KPIs
+
+<p align="center">
+  <img src="docs/images/anofox/kpi_gmv.svg" width="220" alt="GMV Total">
+  <img src="docs/images/anofox/kpi_orders.svg" width="220" alt="Pedidos">
+  <img src="docs/images/anofox/kpi_delayed.svg" width="220" alt="Atrasados">
+</p>
+<p align="center">
+  <img src="docs/images/anofox/kpi_delay_rate.svg" width="220" alt="Taxa de Atraso">
+  <img src="docs/images/anofox/kpi_suppliers.svg" width="220" alt="Suppliers">
+  <img src="docs/images/anofox/kpi_ticket.svg" width="220" alt="Ticket Médio">
+</p>
+
+### Top suppliers por GMV
+
+<img src="docs/images/anofox/bar_top_suppliers.svg" alt="Top suppliers por GMV">
+
+### Pedidos por dia
+
+<img src="docs/images/anofox/line_orders_day.svg" alt="Pedidos por dia">
+
+### Rating vs taxa de atraso
+
+<img src="docs/images/anofox/scatter_rating_delay.svg" alt="Rating vs Delay">
+
+> **Live dashboard**: [docs/dashboard_anofox.html](docs/dashboard_anofox.html) (abrir localmente) · gerado por `python scripts/generate_anofox_dashboard.py`
+
+---
+
 ## 🏗️ Architecture
 
 ```
