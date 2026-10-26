@@ -1,44 +1,35 @@
-<path>D:/Dev/supply-chain-ai/.gitignore</path>
-<type>file</type>
-<content>
-1: # Python
-2: __pycache__/
-3: *.pyc
-4: *.pyo
-5: .venv/
-6: venv/
-7: *.egg-info/
-8: .pytest_cache/
-9: 
-10: # Env
-11: .env
-12: 
-13: # Data (generated)
-14: data/*.duckdb
-15: data/*.duckdb.wal
-16: data/*.parquet
-17: 
-18: # dbt
-19: dbt_project/target/
-20: dbt_project/logs/
-21: dbt_project/dbt_packages/
-22: dbt_project/.user.yml
-23: 
-24: # Logs
-25: *.log
-26: 
-27: # Anofox PNGs (SVG is enough on GitHub — cairo missing on Windows)
-28: docs/images/anofox_png/
-29: 
-30: # IDE
-31: .vscode/
-32: .idea/
-33: .DS_Store
-34: 
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
 
-(End of file - total 34 lines)
-</content>
+# Env
+.env
+
+# Data (generated)
+data/
+
+# dbt
+dbt_project/target/
+dbt_project/logs/
+dbt_project/dbt_packages/
+dbt_project/.user.yml
+
+# Logs
+*.log
+
+# Anofox PNGs
+docs/images/anofox_png/
 
 # Playwright
 playwright-report/
 test-results/
+
+# IDE
+.vscode/
+.idea/
+.DS_Store
