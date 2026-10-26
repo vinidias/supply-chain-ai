@@ -53,12 +53,12 @@ def _build_llm(temperature: float = 0.0) -> tuple[BaseChatModel, str]:
         ), "groq"
 
     if provider == "ark":
-        # Volcengine Ark usa API compativel com OpenAI
+        # BytePlus Ark (ap-southeast) — API compativel com OpenAI
         from langchain_openai import ChatOpenAI
         return ChatOpenAI(
             api_key=os.environ["ARK_API_KEY"],
-            base_url=os.getenv("ARK_BASE_URL", "https://ark.cn-beijing.volces.com/api/v3"),
-            model=os.getenv("ARK_MODEL", "doubao-pro-32k"),
+            base_url=os.getenv("ARK_BASE_URL", "https://ark.ap-southeast.bytepluses.com/api/v3"),
+            model=os.getenv("ARK_MODEL", "seed-2-0-lite-260428"),
             temperature=temperature,
         ), "ark"
 

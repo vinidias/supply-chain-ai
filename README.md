@@ -144,11 +144,36 @@ SQL: SELECT AVG(quantity * unit_price) AS average_ticket FROM orders
 Resposta: O ticket médio dos pedidos é R$ 82.352,05.
 ```
 
-**Supported models** (via `GROQ_MODEL` env var):
+**Provider comparison** (both tested with the same 3 questions, 2026-10-25):
+
+| Provider | Model | Latency | Answer quality | Cost |
+|---|---|---|---|---|
+| **Groq** | `openai/gpt-oss-120b` | ~2s | ✅ identical to Ark | Free tier (1k req/day) |
+| **BytePlus Ark** | `seed-2-0-lite-260428` | ~5s | ✅ identical to Ark | Pay-per-token |
+
+**Both providers returned identical answers** for all 3 questions:
+- "Qual o supplier com maior GMV?" → **Supplier_012 · R$ 20.883.441,46**
+- "Quantos pedidos foram atrasados?" → **312**
+- "Qual o ticket médio?" → **R$ 82.352,05**
+
+### Supported models
+
+**Groq** (via `GROQ_MODEL`):
 - `openai/gpt-oss-120b` (default, recommended)
 - `openai/gpt-oss-20b` (faster, smaller)
 - `qwen/qwen3.8-27b`
 - `allam-2-7b`
+
+**BytePlus Ark** (via `ARK_MODEL`):
+- `seed-2-0-lite-260428` (tested ✅)
+- `seed-2-0-mini-260428` (tested ✅)
+- `deepseek-v4-flash-260425` (requires activation in console)
+- `deepseek-v4-1-flash-260910` (requires activation)
+- `glm-5-3-flash-260828` (requires activation)
+
+**Which to choose?**
+- **Groq** for speed + zero cost (best for demos)
+- **Ark** for production (SLA, enterprise support, payment terms)
 
 ---
 
